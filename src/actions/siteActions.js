@@ -8,7 +8,7 @@ export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
 export const getNYT = () => dispatch => {
     dispatch({ type: FETCH_DATA_START });
     axios
-    .get(`https://api.nytimes.com/svc/topstories/v2/politics.json?api-key=xcuWu0qYddQAl811Z0yuVoZgjFtJp9Ix`)
+    .get(`https://api.nytimes.com/svc/topstories/v2/politics.json?api-key=`)
     .then(res => {
         console.log(res);
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data.results });
