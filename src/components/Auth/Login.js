@@ -6,7 +6,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 // Needs a redirect and check why catch is firing, though token is set.
-const Login = ({props, values, errors, touched, status}) => {
+const Login = ({values, errors, touched, status}) => {
 
     // const LoginToken = localStorage.getItem('token') || '';
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,6 +17,7 @@ const Login = ({props, values, errors, touched, status}) => {
   },[isLoggedIn]);
 
   return (
+    <>
     <div>
         <Card className="login-card" body>
             <Form>
@@ -34,6 +35,7 @@ const Login = ({props, values, errors, touched, status}) => {
             <p><a href='/register'>Create</a> new account.</p>
             </Card>
     </div>
+    </>
   );
 }
 
@@ -55,7 +57,6 @@ const FormikLogin = withFormik({
             localStorage.setItem('token', response.data.access_token);
             localStorage.setItem('user_email', values.email);
             setStatus(response.data);
-            this.props.history.push("/");
         })
         .catch(err => console.log('Error: ' + err.response));
         resetForm();
