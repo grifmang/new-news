@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button } from 'reactstrap';
 import axios from 'axios';
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 // Needs a redirect and check why catch is firing, though token is set.
 const Login = ({values, errors, touched, status}) => {
 
+    let history = useHistory();
+
     // const LoginToken = localStorage.getItem('token') || '';
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
-    console.log(isLoggedIn)
-  },[isLoggedIn]);
+    if (isLoggedIn) {
+        history.push("/")
+    }
+  },[history, isLoggedIn]);
 
   return (
     <>

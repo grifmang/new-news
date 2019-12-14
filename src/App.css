@@ -26,3 +26,10 @@
   margin: 10% auto;
   top: 30%;
 }
+
+.article-card {
+  width: 75%;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
