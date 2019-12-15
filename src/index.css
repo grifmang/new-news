@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url('https://fonts.googleapis.com/css?family=Courier+Prime&display=swap');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -52,12 +53,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./images/lp-bg.jpg");
-  background-position: initial;
-  z-index: -999;
+  /* background-image: url("./images/lp-bg.jpg"); */
+  /* background-position: initial; */
+  /* z-index: -999; */
+  background-color: dimgrey !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h2, p {
+  font-family: 'Courier Prime', monospace;
+}
+

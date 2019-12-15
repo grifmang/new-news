@@ -10,7 +10,6 @@
   width: 400px;
   height: 200px;
   color: white;
-  border: 1px solid white;
 }
 
 .main-container {
@@ -29,7 +28,68 @@
 
 .article-card {
   width: 75%;
-  height: 300px;
-  border: 1px solid black;
+  height: 150px;
+  border: 1px solid white;
   border-radius: 10px;
+  display: flex;
+  margin: 5px auto;
+  align-content: space-around;
+}
+
+.cat-cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+}
+
+.profile-site-buttons {
+  margin: 5px;
+  border: ghostwhite;
+  color: ghostwhite;
+}
+
+.news-title {
+  text-align: center;
+  color: white;
+}
+
+.article-card-elements {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.article-card-img {
+  border-radius: 10px;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: .6rem;
+}
+
+p {
+  font-size: .9rem;
+}
+
+.article-card-elements a {
+  color: whitesmoke;
+  margin-left: auto;
+}
+
+.menu {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  text-align: end;
+  background-color: ghostwhite;
+}
+
+.nav-links {
+  margin-left: auto;
+  margin-right: 2%;
 }

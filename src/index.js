@@ -6,13 +6,15 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from './App';
 import { Provider } from "react-redux";
 import * as serviceWorker from './serviceWorker';
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-import siteReducer from "./reducers";
+import reducer from './reducers/index';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk, logger)));
 
-const store = createStore(siteReducer, applyMiddleware(thunk, logger));
+console.log(store.getState())
 
 ReactDOM.render(<Provider store={store} ><Router><App /></Router></Provider>, document.getElementById('root'));
 

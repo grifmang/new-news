@@ -8,7 +8,6 @@ const Profile = (props) => {
     return (
         <div className='profile-container'>
             {/* This is where you'll change site choices. */}
-            <button onClick={props.getNYT}>Click me</button>
         </div>
     )
 }

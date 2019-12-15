@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button } from 'reactstrap';
 import axios from 'axios';
-import { Redirect, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { login, logout } from "../../actions";
+import { useHistory } from "react-router-dom";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
 // Needs a redirect and check why catch is firing, though token is set.
 const Login = ({values, errors, touched, status}) => {
-
+    // console.log(touched)
     let history = useHistory();
 
-    // const LoginToken = localStorage.getItem('token') || '';
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    // useEffect for redirect from login if user is logged in
   useEffect(() => {
     localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
     if (isLoggedIn) {
@@ -55,12 +57,12 @@ const FormikLogin = withFormik({
         email: Yup.string().required('Email Required.').email(),
         password: Yup.string().required('No Password Provided.').min(5, 'Password must be 5 characters.'),
     }),
-    handleSubmit(values, {setStatus, resetForm}) {
+    handleSubmit(values, {setStatus, resetForm, props}) {
         axios.post("http://127.0.0.1:3000/login/", values)
         .then(response => {
-            localStorage.setItem('token', response.data.access_token);
-            localStorage.setItem('user_email', values.email);
             setStatus(response.data);
+            localStorage.setItem('token', response.access_token)
+            props.login(values.email, response.data.access_token);
         })
         .catch(err => console.log('Error: ' + err.response));
         resetForm();
@@ -68,4 +70,16 @@ const FormikLogin = withFormik({
 })(Login)
 
 
-export default FormikLogin;
+const mapStateToProps = state => {
+    return {
+      email: state.users.email,
+      token: state.users.token,
+      isLoggedIn: state.users.isLoggedIn,
+      error: state.users.error
+    };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    {login, logout}
+  )(FormikLogin);

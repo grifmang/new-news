@@ -1,11 +1,12 @@
 import React from 'react';
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
-import LandingPage from "./components/LandingPage";
+import LandingPage from "./components/Layout/LandingPage";
 import PrivateRoute from "./components/Auth/PrivateRoutes";
 import Profile from "./components/User/Profile";
 import { Route } from "react-router-dom";
 import YourNews from "./components/YourNews";
+import Header from "./components/Layout/Header";
 import './App.css';
 import { connect } from "react-redux";
 import { getNYT } from "./actions";
@@ -13,6 +14,7 @@ import { getNYT } from "./actions";
 function App() {
   return (
     <>
+    <Header />
     <Route exact path="/" component={LandingPage} />
     <PrivateRoute exact path="/YourNews" component={YourNews} />
     <PrivateRoute exact path="/profile" component={Profile} />

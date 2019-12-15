@@ -11,7 +11,7 @@ import {
     };
 
 
-const reducer = (state = initialState, action) => {
+const sitesReducer = (state = initialState, action) => {
     switch (action.type) {
       case FETCH_DATA_START:
         return {
@@ -37,4 +37,4 @@ const reducer = (state = initialState, action) => {
     }
   };
   
-  export default reducer;
+  export default sitesReducer;
