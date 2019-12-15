@@ -9,17 +9,17 @@ import * as Yup from "yup";
 
 // Needs a redirect and check why catch is firing, though token is set.
 const Login = ({values, errors, touched, status}) => {
-    let history = useHistory();
+  //   let history = useHistory();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // useEffect for redirect from login if user is logged in
-  useEffect(() => {
-    localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
-    if (isLoggedIn) {
-        history.push("/")
-    }
-  },[history, isLoggedIn]);
+  //   // useEffect for redirect from login if user is logged in
+  // useEffect(() => {
+  //   localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  //   if (isLoggedIn) {
+  //       history.push("/")
+  //   }
+  // },[history, isLoggedIn]);
 
   return (
     <>
@@ -60,7 +60,7 @@ const FormikLogin = withFormik({
         axios.post("https://tim-news-be.herokuapp.com/login/", values)
         .then(response => {
             setStatus(response.data);
-            localStorage.setItem('token', response.access_token)
+            // localStorage.setItem('token', response.access_token)
             props.login(values.email, response.data.access_token);
             alert('Click News in the top left to now see your news.');
         })

@@ -8,32 +8,27 @@ import {
     Button
   } from 'reactstrap';
 
-const Header = () => {
+const Header = (props) => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const logout = () => {
-        localStorage.clear();
-        setIsLoggedIn(false);
-    }
-
-    useEffect(() => {
-        localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false)
-    }, [isLoggedIn])
+    // useEffect(() => {
+    //     localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false)
+    // }, [isLoggedIn])
 
     return (
         <div>
       <Navbar className='menu' light expand="md">
         <NavbarBrand className='logo' href="/YourNews">News</NavbarBrand>
           <Nav className="nav-links" navbar>
-            {isLoggedIn
+            {props.isLoggedIn
              ?
             <>
             {/* <NavItem>
               <NavLink href="/YourNews">Get News</NavLink>
             </NavItem> */}
             <NavItem>
-              <Button onClick={logout}>Logout</Button>
+              <Button onClick={props.logout}>Logout</Button>
             </NavItem>
             </>
             :
@@ -51,4 +46,16 @@ const Header = () => {
     )
 }
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    email: state.users.email,
+    token: state.users.token,
+    isLoggedIn: state.users.isLoggedIn,
+    error: state.users.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {login, logout}
+)(Header);

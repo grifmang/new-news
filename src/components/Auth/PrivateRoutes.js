@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoutes = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
-      localStorage.getItem('token')
+      props.isLoggedIn
         ? <Component {...props} />
         : <Redirect to={{
             pathname: '/login',
@@ -12,4 +12,16 @@ const PrivateRoutes = ({ component: Component, ...rest }) => (
     )} />
   )
 
-export default PrivateRoutes;
+  const mapStateToProps = state => {
+    return {
+      email: state.users.email,
+      token: state.users.token,
+      isLoggedIn: state.users.isLoggedIn,
+      error: state.users.error
+    };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    {login, logout}
+  )(PrivateRoutes);

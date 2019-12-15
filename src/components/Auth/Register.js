@@ -8,11 +8,11 @@ import { login, logout } from "../../actions";
 
 const Register = ({values, errors, touched, status}) => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
-  },[isLoggedIn]);
+  // useEffect(() => {
+  //   localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  // },[isLoggedIn]);
 
   return (
     <div>
