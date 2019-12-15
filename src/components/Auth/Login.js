@@ -58,11 +58,12 @@ const FormikLogin = withFormik({
         password: Yup.string().required('No Password Provided.').min(5, 'Password must be 5 characters.'),
     }),
     handleSubmit(values, {setStatus, resetForm, props}) {
-        axios.post("http://127.0.0.1:3000/login/", values)
+        axios.post("http://127.0.0.1:3333/login/", values)
         .then(response => {
             setStatus(response.data);
             localStorage.setItem('token', response.access_token)
             props.login(values.email, response.data.access_token);
+            alert('Click News in the top left to now see your news.');
         })
         .catch(err => console.log('Error: ' + err.response));
         resetForm();

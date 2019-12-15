@@ -3,6 +3,8 @@ import { Card, Button } from 'reactstrap';
 import axios from 'axios';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { connect } from "react-redux";
+import { login, logout } from "../../actions";
 
 const Register = ({values, errors, touched, status}) => {
 
@@ -54,17 +56,18 @@ const FormikRegister = withFormik({
         password: Yup.string().required('No Password Provided.').min(5, 'Password must be 5 characters.'),
         confirmPassword: Yup.string().required('Required.').label('Confirm Password').test('passwords-match', 'Passwords must match.', function(e) {return this.parent.password === e;}),
     }),
-    handleSubmit(values, {setStatus, resetForm}) {
+    handleSubmit(values, {setStatus, resetForm, props}) {
         const loginVals = {
             "name": values.name, 
             "email": values.email,
             "password": values.password};
-        axios.post("http://127.0.0.1:3000/register", loginVals)
+        axios.post("http://127.0.0.1:3333/register", loginVals)
         .then(response => {
-            console.log(response)
-            localStorage.setItem('token', response.body.access_token);
-            localStorage.setItem('user_email', values.email);
             setStatus(response.data);
+            // Needs to get token as well. BE needs to send token on register
+            // localStorage.setItem('token', response.access_token)
+            // props.login(values.email, response.data.access_token);
+            alert('Thanks For Registering. Please Login Now.');
         })
         .catch(err => console.log(err.response));
         resetForm();
@@ -72,4 +75,16 @@ const FormikRegister = withFormik({
 })(Register)
 
 
-export default FormikRegister;
+const mapStateToProps = state => {
+    return {
+      email: state.users.email,
+      token: state.users.token,
+      isLoggedIn: state.users.isLoggedIn,
+      error: state.users.error
+    };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    {login, logout}
+  )(FormikRegister);

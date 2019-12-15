@@ -24,14 +24,14 @@ const Header = () => {
     return (
         <div>
       <Navbar className='menu' light expand="md">
-        <NavbarBrand className='logo' href="/">News</NavbarBrand>
+        <NavbarBrand className='logo' href="/YourNews">News</NavbarBrand>
           <Nav className="nav-links" navbar>
             {isLoggedIn
              ?
             <>
-            <NavItem>
+            {/* <NavItem>
               <NavLink href="/YourNews">Get News</NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
               <Button onClick={logout}>Logout</Button>
             </NavItem>
