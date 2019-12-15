@@ -7,6 +7,8 @@ import {
     NavLink,
     Button
   } from 'reactstrap';
+  import { connect } from "react-redux";
+  import { login, logout } from "../../actions";
 
 const Header = (props) => {
 
