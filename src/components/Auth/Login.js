@@ -9,7 +9,6 @@ import * as Yup from "yup";
 
 // Needs a redirect and check why catch is firing, though token is set.
 const Login = ({values, errors, touched, status}) => {
-    // console.log(touched)
     let history = useHistory();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
