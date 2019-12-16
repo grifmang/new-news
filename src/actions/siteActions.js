@@ -10,7 +10,6 @@ export const getNYT = (category) => dispatch => {
     axios
     .get(`https://api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${process.env.REACT_APP_API_KEY}`)
     .then(res => {
-      console.log(res.data.results)
       dispatch({ type: FETCH_DATA_SUCCESS, payload: res.data.results });
     })
     .catch(err => {

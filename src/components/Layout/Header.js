@@ -12,11 +12,11 @@ import {
 
 const Header = (props) => {
 
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // useEffect(() => {
-    //     localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false)
-    // }, [isLoggedIn])
+    useEffect(() => {
+        localStorage.getItem('token') ? setIsLoggedIn(true) : setIsLoggedIn(false)
+    }, [isLoggedIn])
 
     return (
         <div>

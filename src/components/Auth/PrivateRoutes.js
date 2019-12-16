@@ -4,12 +4,12 @@ import { login, logout } from "../../actions";
 import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoutes = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-      props.isLoggedIn
-        ? <Component {...props} />
+    <Route {...rest} render={(prop) => (
+      localStorage.getItem('token')
+        ? <Component {...prop} />
         : <Redirect to={{
             pathname: '/login',
-            state: { from: props.location }
+            state: { from: prop.location }
           }} />
     )} />
   )

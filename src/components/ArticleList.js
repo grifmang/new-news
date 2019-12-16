@@ -8,7 +8,6 @@ const ArticleList = (props) => {
     return (
         <>
         {props.data.map((element, index) => {
-            console.log(element.multimedia)
             return <ArticleCard 
             key={index} 
             img={element.multimedia.length > 0 ? element.multimedia[1].url : require("../images/no-image.jpg")} 

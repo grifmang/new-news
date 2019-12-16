@@ -61,7 +61,7 @@ const FormikRegister = withFormik({
             "name": values.name, 
             "email": values.email,
             "password": values.password};
-        axios.post("https://tim-news-be.herokuapp.com/register", loginVals)
+        axios.post("http://127.0.0.1:3000/register", loginVals)
         .then(response => {
             setStatus(response.data);
             // Needs to get token as well. BE needs to send token on register
