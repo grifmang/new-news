@@ -1,11 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
-import { login, logout } from "../../actions";
 import { Route, Redirect } from "react-router-dom";
 
-const PrivateRoutes = ({ component: Component, ...rest }) => (
+const PrivateRoutes = ({ component: Component, authed, ...rest }) => (
     <Route {...rest} render={(prop) => (
-      props.token
+      authed
         ? <Component {...prop} />
         : <Redirect to={{
             pathname: '/login',
@@ -14,16 +12,4 @@ const PrivateRoutes = ({ component: Component, ...rest }) => (
     )} />
   )
 
-  const mapStateToProps = state => {
-    return {
-      email: state.users.email,
-      token: state.users.token,
-      isLoggedIn: state.users.isLoggedIn,
-      error: state.users.error
-    };
-  };
-  
-  export default connect(
-    mapStateToProps,
-    {login, logout}
-  )(PrivateRoutes);
+ export default PrivateRoutes;

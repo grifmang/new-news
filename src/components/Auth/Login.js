@@ -59,8 +59,9 @@ const FormikLogin = withFormik({
     handleSubmit(values, {setStatus, resetForm, props}) {
         axios.post("https://tim-news-be.herokuapp.com/login/", values)
         .then(response => {
-            setStatus(response.data);
+            // setStatus(response.data);
             // localStorage.setItem('token', response.access_token)
+            console.log(values.email, response.data.access_token)
             props.login(values.email, response.data.access_token);
             alert('Click News in the top left to now see your news.');
         })

@@ -9,15 +9,15 @@ import YourNews from "./components/YourNews";
 import Header from "./components/Layout/Header";
 import './App.css';
 import { connect } from "react-redux";
-import { getNYT } from "./actions";
+import { login, logout } from "./actions";
 
-function App() {
+function App(props) {
   return (
     <>
     <Header />
     <Route exact path="/" component={LandingPage} />
-    <PrivateRoute exact path="/YourNews" component={YourNews} />
-    <PrivateRoute exact path="/profile" component={Profile} />
+    <PrivateRoute exact path="/YourNews" component={YourNews}  authed={props.token} />
+    <PrivateRoute exact path="/profile" component={Profile}/>
 
     <Route exact path="/Login" component={Login} />
     <Route exact path="/Register" component={Register} />
@@ -27,13 +27,14 @@ function App() {
 
 const mapStateToProps = state => {
   return {
-    data: state.data,
-    isFetching: state.isFetching,
-    error: state.error
+    email: state.users.email,
+    token: state.users.token,
+    isLoggedIn: state.users.isLoggedIn,
+    error: state.users.error
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getNYT }
+  {login, logout}
 )(App);
