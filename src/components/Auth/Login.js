@@ -60,7 +60,7 @@ const FormikLogin = withFormik({
         axios.post("http://127.0.0.1:3000/login/", values)
         .then(response => {
             setStatus(response.data);
-            localStorage.setItem('token', response.access_token)
+            // localStorage.setItem('token', response.access_token)
             props.login(values.email, response.data.access_token);
             alert('Click News in the top left to now see your news.');
         })
