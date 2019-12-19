@@ -5,6 +5,7 @@ import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoutes = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(prop) => (
+      console.log(props.token);
       props.token
         ? <Component {...prop} />
         : <Redirect to={{
